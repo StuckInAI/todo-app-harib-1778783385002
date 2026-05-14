@@ -8,12 +8,6 @@ type AddTodoFormProps = {
   onAdd: (text: string, priority: Priority) => void;
 };
 
-const PRIORITY_CONFIG: Record<Priority, { label: string; color: string }> = {
-  high: { label: '🔴 High', color: styles.priorityHigh },
-  medium: { label: '🟡 Medium', color: styles.priorityMedium },
-  low: { label: '🟢 Low', color: styles.priorityLow },
-};
-
 export default function AddTodoForm({ onAdd }: AddTodoFormProps) {
   const [text, setText] = useState('');
   const [priority, setPriority] = useState<Priority>('medium');
@@ -40,7 +34,7 @@ export default function AddTodoForm({ onAdd }: AddTodoFormProps) {
             onChange={(e) => setText(e.target.value)}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
-            placeholder="Add a new task…"
+            placeholder="Add a new task"
             aria-label="New todo text"
           />
         </div>
