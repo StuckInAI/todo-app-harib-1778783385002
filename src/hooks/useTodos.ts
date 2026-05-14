@@ -73,6 +73,7 @@ export function useTodos() {
 
   return {
     todos: filteredTodos,
+    allTodos: todos,
     filter,
     setFilter,
     addTodo,

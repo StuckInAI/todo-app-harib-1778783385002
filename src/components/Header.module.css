@@ -1,32 +1,63 @@
 .header {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
+  justify-content: space-between;
   padding: var(--spacing-lg) 0 var(--spacing-sm);
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
 }
 
 .iconWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  background: var(--color-primary);
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #7c6af7 0%, #a78bfa 100%);
   color: #fff;
-  border-radius: var(--radius-lg);
+  border-radius: 14px;
   flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(124,106,247,0.4);
+}
+
+.greeting {
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 2px;
 }
 
 .title {
   font-size: var(--font-size-2xl);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--color-text-primary);
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #e8eaf6 30%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.subtitle {
-  font-size: var(--font-size-sm);
+.dateChip {
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 99px;
+  padding: 6px 14px;
+}
+
+.dateText {
+  font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
-  margin: 4px 0 0;
+  font-weight: 500;
+  white-space: nowrap;
 }
