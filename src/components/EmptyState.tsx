@@ -14,7 +14,7 @@ const MESSAGES: Record<FilterType, { title: string; sub: string; Icon: React.Ele
   },
   active: {
     title: 'All tasks complete!',
-    sub: 'You're on fire 🔥 — no active tasks remaining.',
+    sub: "You're on fire \uD83D\uDD25 \u2014 no active tasks remaining.",
     Icon: Sparkles,
   },
   completed: {
