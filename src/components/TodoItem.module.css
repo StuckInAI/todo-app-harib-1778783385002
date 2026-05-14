@@ -7,10 +7,11 @@
   border-radius: var(--radius-lg);
   padding: 12px var(--spacing-md);
   box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.2s, transform 0.2s, opacity 0.2s, border-color 0.2s;
+  transition: box-shadow 0.2s, transform 0.2s, opacity 0.2s, border-color 0.2s, background 0.2s;
   animation: slideIn 0.25s ease both;
   position: relative;
   overflow: hidden;
+  cursor: default;
 }
 
 .item::before {
@@ -45,6 +46,40 @@
   transition: opacity 0.22s ease, transform 0.22s ease;
 }
 
+.item.dragging {
+  opacity: 0.45;
+  transform: scale(0.98);
+  box-shadow: var(--shadow-lg, 0 8px 30px rgba(0,0,0,0.18));
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+  z-index: 10;
+  cursor: grabbing;
+}
+
+.item.dragOver {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft, rgba(124,106,247,0.07));
+  box-shadow: 0 0 0 2px var(--color-primary-alpha, rgba(124,106,247,0.18)), var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.item.dragOver::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #7c6af7, #a78bfa);
+  animation: dropIndicator 0.15s ease;
+}
+
+@keyframes dropIndicator {
+  from { opacity: 0; transform: scaleX(0.5); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -58,11 +93,21 @@
 
 .grip {
   color: var(--color-text-muted);
-  opacity: 0.35;
+  opacity: 0.4;
   cursor: grab;
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.item:hover .grip {
+  opacity: 0.75;
+  color: var(--color-primary);
+}
+
+.grip:active {
+  cursor: grabbing;
 }
 
 .checkbox {

@@ -18,6 +18,7 @@ export default function TodoPage() {
     deleteTodo,
     editTodo,
     clearCompleted,
+    reorderTodos,
     activeCount,
     completedCount,
   } = useTodos();
@@ -52,6 +53,7 @@ export default function TodoPage() {
             onToggle={toggleTodo}
             onDelete={deleteTodo}
             onEdit={editTodo}
+            onReorder={reorderTodos}
           />
         )}
       </div>

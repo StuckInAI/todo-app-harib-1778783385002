@@ -8,9 +8,14 @@ type TodoItemProps = {
   todo: Todo;
   index: number;
   isDeleting: boolean;
+  isDragOver: boolean;
   onToggle: (id: string) => void;
   onDelete: (id: string) => void;
   onEdit: (id: string, newText: string) => void;
+  onDragStart: (id: string) => void;
+  onDragOver: (e: React.DragEvent, id: string) => void;
+  onDrop: (e: React.DragEvent, id: string) => void;
+  onDragEnd: () => void;
 };
 
 const PRIORITY_LABELS: Record<string, string> = {
@@ -23,13 +28,19 @@ export default function TodoItem({
   todo,
   index,
   isDeleting,
+  isDragOver,
   onToggle,
   onDelete,
   onEdit,
+  onDragStart,
+  onDragOver,
+  onDrop,
+  onDragEnd,
 }: TodoItemProps) {
   const [editing, setEditing] = useState(false);
   const [editText, setEditText] = useState(todo.text);
   const [hovered, setHovered] = useState(false);
+  const [dragging, setDragging] = useState(false);
 
   function handleEditSubmit(): void {
     if (editText.trim()) {
@@ -64,13 +75,30 @@ export default function TodoItem({
         styles.item,
         todo.completed && styles.completed,
         styles[`priority-${todo.priority}`],
-        isDeleting && styles.deleting
+        isDeleting && styles.deleting,
+        dragging && styles.dragging,
+        isDragOver && styles.dragOver
       )}
       style={{ animationDelay: `${index * 40}ms` }}
+      draggable
+      onDragStart={(e) => {
+        e.dataTransfer.effectAllowed = 'move';
+        setDragging(true);
+        onDragStart(todo.id);
+      }}
+      onDragOver={(e) => onDragOver(e, todo.id)}
+      onDrop={(e) => onDrop(e, todo.id)}
+      onDragEnd={() => {
+        setDragging(false);
+        onDragEnd();
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className={styles.grip}>
+      <div
+        className={styles.grip}
+        title="Drag to reorder"
+      >
         <GripVertical size={14} />
       </div>
 

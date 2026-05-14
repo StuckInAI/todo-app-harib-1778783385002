@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import type { Todo, FilterType, Priority } from '@/types';
 
 const STORAGE_KEY = 'todos-app-data';
@@ -62,6 +62,18 @@ export function useTodos() {
     setTodos((prev) => prev.filter((t) => !t.completed));
   }
 
+  const reorderTodos = useCallback((sourceId: string, targetId: string) => {
+    setTodos((prev) => {
+      const allTodos = [...prev];
+      const sourceIdx = allTodos.findIndex((t) => t.id === sourceId);
+      const targetIdx = allTodos.findIndex((t) => t.id === targetId);
+      if (sourceIdx === -1 || targetIdx === -1 || sourceIdx === targetIdx) return prev;
+      const [removed] = allTodos.splice(sourceIdx, 1);
+      allTodos.splice(targetIdx, 0, removed);
+      return allTodos;
+    });
+  }, []);
+
   const filteredTodos = todos.filter((t) => {
     if (filter === 'active') return !t.completed;
     if (filter === 'completed') return t.completed;
@@ -81,6 +93,7 @@ export function useTodos() {
     deleteTodo,
     editTodo,
     clearCompleted,
+    reorderTodos,
     activeCount,
     completedCount,
   };
