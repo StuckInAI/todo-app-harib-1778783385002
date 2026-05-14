@@ -1,0 +1,69 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-sm) var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.stats {
+  flex: 1;
+  min-width: 80px;
+}
+
+.stat {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.statNum {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.filters {
+  display: flex;
+  gap: 4px;
+}
+
+.filterBtn {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 6px 14px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.filterBtn:hover {
+  background: var(--color-bg-hover);
+  color: var(--color-text-primary);
+}
+
+.filterBtn.active {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary-border);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.clearBtn {
+  background: transparent;
+  border: none;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.15s;
+  white-space: nowrap;
+  padding: 6px 4px;
+}
+
+.clearBtn:hover {
+  color: var(--color-danger);
+}

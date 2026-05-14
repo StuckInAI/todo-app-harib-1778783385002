@@ -1,0 +1,13 @@
+.page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
